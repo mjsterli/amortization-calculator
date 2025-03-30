@@ -1,46 +1,22 @@
-import { Button, Container, Divider, Grid, Table, TableBody, TableCell, TableHead, TableRow, TextField, Typography } from '@mui/material';
+import { Button, Container, Divider, Grid, Table, TableBody, TableCell, TableHead, TableRow, TextField, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
 import { blue, green }from '@mui/material/colors';
+import PrincipleInterest from './components/PrincipleInterest';
+import { useEffect, useState } from 'react';
 
 const Calculator = () => {
+
+  const [calculator, setCalculator] = useState({salesPrice: 3648})
+
   return (
     <Container sx={{backgroundColor: blue[50], height: '100vh', paddingY: '32px'}} >
-      <Grid container spacing={2} sx={{marginBottom: '16px'}} >
-        <Grid size={12}>
-          <Typography variant='h4'>Prinicple and Interest</Typography>
-        </Grid>
-        <Grid size={5}>
-          <TextField variant='outlined' label='Sales Price' fullWidth />
-        </Grid>
-        <Grid size={5} offset={1}>
-          <TextField variant='outlined' label='Loan Amount' fullWidth />
-        </Grid>
-        <Grid size={3}>
-          <TextField variant='outlined' label='Down Payment' fullWidth />
-        </Grid>
-        <Grid size={1}>
-          <TextField variant='outlined' label='%' fullWidth />
-        </Grid>
-        <Grid size={2} offset={2}>
-          <TextField variant='outlined' label='Interest Rate' fullWidth />
-        </Grid>
-        <Grid size={2}>
-          <TextField variant='outlined' label='Term' fullWidth />
-        </Grid>
-        <Grid size={4}>
-          <TextField variant='outlined' label='Principle and Interest' fullWidth defaultValue='0' slotProps={{input: {readOnly: true}}} color={green[900]} />
-        </Grid>
-        <Grid size={8} />
-        <Grid size={1}>
-          <Button variant='contained'>Calculate</Button>
-        </Grid>
-      </Grid>
+      <PrincipleInterest calculator={calculator} updateCalculator={setCalculator}/>
       <Divider />
       <Grid container spacing={2} sx={{marginTop: '16px', marginBottom: '16px'}} columns={3}>
         <Grid size={3}>
           <Typography variant='h4'>Payment</Typography>
         </Grid>
         <Grid size={1}>
-          <TextField variant='outlined' label='Principle and Interest' fullWidth />
+          <TextField variant='outlined' label='Principle and Interest' fullWidth value={calculator.salesPrice} />
         </Grid>
         <Grid size={2} />
         <Grid size={1} offset={0}>
